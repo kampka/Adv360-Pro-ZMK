@@ -33,36 +33,86 @@
 
     default_layer {
       bindings = <
-        &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &tog 1                                                           &mo 3 &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
-        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp U  &kp I     &kp O    &kp P    &kp BSLH
-        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp J  &kp K     &kp L    &kp SEMI &kp SQT
-        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp M  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp SPACE              &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo 2
+    // --------------------------------------------------------------------------------------
+    // |      |     |     |     |     |     |     |   |BLTOG|      |     |     |     |      |
+    // |  TAB |  j  |  d  |  u  |  a  |  x  |     |   |  p  |  h   |  l  |  m  |  w  |  ß   |
+    // |      |  c  |  t  |  i  |  e  |  o  |     |   |  b  |  n   |  r  |  s  |  g  |  q   |
+    // | LCTEL|  f  |  v  |  ü  |  ä  |  ö  |     |   |  y  |  y   |  ,  |  .  |  k  | RCTRL|
+    // |      |     |     |     |     |
+    //
+    //                                |     |     |   |     |     |
+    //                                      |     |   |     |
+    //                          | M 1 | M 2 | LALT|   |     | M 4 |SPACE|
+        &none     &none  &none  &none    &none   &none    &tog 1                                                               &bl BL_TOG &none &none &none     &none   &none  &none
+        &kp TAB   &kp J  &kp D  &kp U    &kp A   &kp X    &none                                                                &none      &kp P &kp H &kp L     &kp M   &kp W  &kp MINUS
+        &kp LALT  &kp C  &kp T  &kp I    &kp E   &kp O    &none          &none &none     /**/ &none &none                      &none      &kp B &kp N &kp R     &kp S   &kp G  &kp Q
+        &kp LCTRL &kp F  &kp V  &kp LBKT &kp SQT &kp SEMI                      &none     /**/ &none                                       &kp Z &kp Y &kp COMMA &kp DOT &kp K  &kp RCTRL
+        &none     &none  &none  &none    &none                     &mo 1 &mo 2 &kp LALT  /**/ &none &mo 3 &kp SPACE                       &none &none     &none   &none  &none
       >;
     };
-    keypad {
+    shift {
       bindings = <
-        &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &trans                                                           &mo 3 &kp N6 &kp KP_NUM &kp KP_EQUAL &kp KP_DIVIDE &kp KP_MULTIPLY &kp MINUS
-        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp KP_N7  &kp KP_N8    &kp KP_N9     &kp KP_MINUS    &kp BSLH
-        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp KP_N4  &kp KP_N5    &kp KP_N6     &kp KP_PLUS     &kp SQT
-        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp KP_N1  &kp KP_N2    &kp KP_N3     &kp KP_ENTER    &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp KP_N0              &kp UP     &kp DOWN     &kp KP_DOT    &kp RBKT        &mo 2
+    // --------------------------------------------------------------------------------------
+    // |      |     |     |     |     |     |     |   |     |      |     |     |     |      |
+    // |  TAB |  J  |  D  |  U  |  A  |  X  |     |   |  P  |  H   |  L  |  M  |  W  |  €   |
+    // |S/LALT|  C  |  T  |  I  |  E  |  O  |     |   |  B  |  N   |  R  |  S  |  G  |  Q   |
+    // |S/LCTL|  F  |  V  |  Ü  |  Ä  |  Ö  |     |   |  Z  |  Y   |  ,  |  .  |  K  |S/RCTL|
+    // |      |     |     |     |     |
+    //
+    //                                |     |     |   |     |     |
+    //                                      |     |   |     |
+    //                          |     |    |S/LALT|   |     |     |LS(SPC)|
+        &none         &none      &none      &none        &none       &none        &none                                                                &none  &none      &none      &none         &none       &none      &none 
+        &kp LS(TAB)   &kp LS(J)  &kp LS(D)  &kp LS(U)    &kp LS(A)   &kp LS(X)    &none                                                                &none  &kp LS(P)  &kp LS(H)  &kp LS(L)     &kp LS(M)   &kp LS(W)  &kp RA(E)
+        &kp LS(LALT)  &kp LS(C)  &kp LS(T)  &kp LS(I)    &kp LS(E)   &kp LS(O)    &none          &none  &none         /**/ &none  &none                &none  &kp LS(B)  &kp LS(N)  &kp LS(R)     &kp LS(S)   &kp LS(G)  &kp LS(Q)
+        &kp LS(LCTRL) &kp LS(F)  &kp LS(V)  &kp LS(LBKT) &kp LS(SQT) &kp LS(SEMI)                       &none         /**/ &none                              &kp LS(Z)  &kp LS(Y)  &kp LS(COMMA) &kp LS(DOT) &kp LS(K)  &kp LS(RCTRL)
+        &none         &none      &none      &none        &none                         &kp LSHFT &trans &kp LS(LALT)  /**/ &none &trans &kp LS(SPACE)                    &none      &none         &none       &none      &none
       >;
     };
-    fn {
+    programming {
       bindings = <
-        &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &tog 1                                           &mo 3 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
-        &trans &trans &trans &trans &trans &trans  &none                                           &none &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans &trans  &none        &trans &trans &trans &trans        &none &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans &trans                      &trans &trans                     &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans              &trans &trans &trans  &trans  &trans
+    // --------------------------------------------------------------------------------------
+    // |      |     |     |     |     |     |     |   |     |      |     |     |     |      |
+    // |      |  @  |  _  |  [  |  ]  |  ^  |   |  !  |  <  |  >  |  =  |  &  |      |
+    // |      |  \  |  /  |  {  |  }  |  *  |   |  ?  |  (  |  )  |  -  |  :  |      |
+    // |      |  #  |  $  |  |  |  ~  |  `  |   |  +  |  %  |  "  |  '  |  ;  |      |
+    // |      |     |     |     |     |
+    //
+    //                                |     |     |   |     |     |
+    //                                      |     |   |     |
+    //                          |     |    |S/LALT|   |     |     |LS(SPC)|
+        &none     &none          &none             &none            &none              &none         &none                                                                &none  &none             &none            &none            &none            &none            &none 
+        &none     &kp RA(Q)      &kp LS(SLASH)     &kp RA(NUMBER_8) &kp RA(NUMBER_9)   &kp GRAVE     &none                                                                &none  &kp LS(NUMBER_1)  &kp NUBS         &kp LS(NUBS)     &kp LS(NUMBER_0) &kp LS(NUMBER_6) &none
+        &none     &kp RA(MINUS)  &kp LS(NUMBER_7)  &kp RA(NUMBER_7) &kp RA(NUMBER_0)   &kp LS(RBKT)  &none          &none  &none    /**/ &none  &none                     &none  &kp LS(MINUS)     &kp LS(NUMBER_8) &kp LS(NUMBER_9) &kp FSLH         &kp LS(DOT)      &none
+        &kp LCTRL &kp NUHS       &kp LS(NUMBER_4)  &kp RA(NUBS)     &kp RA(RBKT)       &kp LS(EQUAL)                       &none    /**/ &none                                   &kp RBKT          &kp LS(NUMBER_5) &kp LS(NUMBER_2) &kp LS(NUHS)     &kp LS(COMMA)    &kp RCTRL
+        &none     &none          &none             &none            &none                                    &kp LSHFT &trans &kp LALT /**/ &none &trans &kp SPACE                                    &none            &none            &none            &none            &none
+      >;
+    };
+
+    numbers {
+      bindings = <
+    // --------------------------------------------------------------------------------------
+    // |      |     |     |     |     |     |     |   |     |      |     |     |     |      |
+    // |      | PgUp | BSP |  Up  | DEL  | PgDwn |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
+    // |      | HOME | LEFT| DOWN | RGHT | ESC   |   |  -  |  =  |  [  |  ]  |  \  |  `   |
+    // |      | END  |     |      | ENT  | TAB   |   |  _  |  +  |  {  |  }  | "|" |  ~   |
+    // |      |     |     |     |     |
+    //
+    //                                |     |     |   |     |     |
+    //                                      |     |   |     |
+    //                          |     |    |S/LALT|   |     |     |LS(SPC)|
+        &none     &none     &none    &none     &none      &none     &none                                                                &mo 4  &none        &none        &none        &none        &none  &none 
+        &none     &kp PG_UP &kp BSPC &kp UP    &kp DEL    &kp PG_DN &none                                                                &none  &none        &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &none  &none
+        &none     &kp HOME  &kp LEFT &kp DOWN  &kp RIGHT  &kp ESC   &none          &none  &none      /**/ &none  &none                   &none  &none        &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6 &none  &none
+        &kp LCTRL &kp END   &none    &none     &kp ENTER  &kp TAB                         &none      /**/ &none                                 &kp NUMBER_0 &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &none  &kp RCTRL
+        &none     &none     &none    &none     &none                     &kp LSHFT &trans &kp LALT   /**/ &none &trans &trans                                &none        &none        &none        &none  &none
       >;
     };
     mod {
       bindings = <
         &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none                                                                     &trans                 &none        &none        &none        &none &none &none
         &none &none        &none        &none        &none        &none        &bootloader                                                               &bootloader            &none        &none        &none        &none &none &none
-        &none &none        &none        &none        &none        &none        &none                   &none &none &bt BT_CLR &none                      &rgb_ug RGB_MEFS_CMD 5 &none        &none        &none        &none &none &none
+        &none &none        &none        &none        &none        &none        &bl BL_TOG              &none &none &bt BT_CLR &none                      &rgb_ug RGB_MEFS_CMD 5 &none        &none        &none        &none &none &none
         &none &none        &none        &none        &macro_ver   &none                                      &none &none                                                        &none        &none        &none        &none &none &none
         &none &none        &none        &none        &none                                       &none &none &none &none      &bl BL_TOG &rgb_ug RGB_TOG                                     &bl BL_INC   &bl BL_DEC   &none &none &none
       >;
